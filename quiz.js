@@ -115,7 +115,11 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 
 			if (!correct) {
 				const answerSpan = crel("span");
-				answerSpan.textContent = qsa(".answer")[correctN - 1].textContent;
+				try {
+					answerSpan.textContent = qsa(".answer")[correctN - 1].textContent;
+				} catch (e) {
+					console.log(`correctN: ${correctN}\nq:${q}\na:${a}`);
+				}
 				answerText.append(answerSpan);
 			} else updateScoreAndTurn(1);
 
