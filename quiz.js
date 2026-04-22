@@ -250,16 +250,22 @@ function stringToDictionary(string) {
 	// "noun:μακριά=far,κοντά=high"
 }
 
-async function getDictionaries(arr) {
+async function getDictionaries(arr, callback) {
 	var res = {};
 	for (let i of arr) {
 		var f = fetch(`${window.location.pathname.split("/greek/")[0]}/greek/json/${i.toLowerCase()}.json`);
 		var j = (await f).json();
 		res[i] = await j;
 	}
-	return await res;
+
+	if (callback) {
+		return callback(res), res;
+	} else return res;
 }
 
+dictionary = await getDictionaries(["nouns", "verbs", "adjectives", "adverbs", "conjunctions", "prepositions", "interrogative", "odds and ends"], () => {
+	nextQuestion([], document.querySelector(".quiz"), randomGreek);
+});
 
 const randomGreek = () => {
 	var dictToUse = dictionary[arrayRandom(Object.keys(dictionary), e => !!Object.keys(e).length)];
@@ -281,5 +287,3 @@ const randomGreek = () => {
 
 	return res;
 }
-
-nextQuestion([], document.querySelector(".quiz"), randomGreek);
