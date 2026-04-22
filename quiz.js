@@ -289,13 +289,28 @@ const randomGreek = () => {
 
 	// alert(JSON.stringify(dictToUse))
 
-	var rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
-	var res = {
-		question: Object.keys(dictToUse)[rn],
-		time: 60
+	var rn
+	var res;
+	var answers;
+
+	if (Math.floor(Math.random() * 2)) {
+		rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
+		res = {
+			question: Object.keys(dictToUse)[rn],
+			time: 60
+		}
+
+		answers = comprehension(4, () => arrayRandom(Object.values(dictToUse)), [Object.values(dictToUse)[rn]], true, true);
+	} else {
+		rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
+		res = {
+			question: Object.values(dictToUse)[rn],
+			time: 60
+		}
+
+		answers = comprehension(4, () => arrayRandom(Object.keys(dictToUse)), [Object.keys(dictToUse)[rn]], true, true);
 	}
 
-	var answers = comprehension(4, () => arrayRandom(Object.values(dictToUse)), [Object.values(dictToUse)[rn]], true, true);
 
 
 	res.answers = answers;
