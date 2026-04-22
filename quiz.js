@@ -263,9 +263,12 @@ async function getDictionaries(arr, callback) {
 	} else return res;
 }
 
-dictionary = await getDictionaries(["nouns", "verbs", "adjectives", "adverbs", "conjunctions", "prepositions", "interrogative", "odds and ends"], () => {
-	nextQuestion([], document.querySelector(".quiz"), randomGreek);
-});
+(async () => {
+	dictionary = await getDictionaries(["nouns", "verbs", "adjectives", "adverbs", "conjunctions", "prepositions", "interrogative", "odds and ends"], () => {
+		nextQuestion([], document.querySelector(".quiz"), randomGreek);
+	});
+})();
+
 
 const randomGreek = () => {
 	var dictToUse = dictionary[arrayRandom(Object.keys(dictionary), e => !!Object.keys(e).length)];
