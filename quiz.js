@@ -36,7 +36,13 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 			answer.textContent = a[i].toString().split("(")[0].toUpperCase();
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
-			subhead.textContent = "(" + a[i].split("(")[1] + ")"
+			subhead.textContent = "(" + a[i].split("(")[1];
+			answer.append(subhead);
+		} else if (a[i].toString().endsWith("]")) {
+			answer.textContent = a[i].toString().split("[")[0].toUpperCase();
+			var subhead = crel("h3");
+			subhead.classList.add("subanswer");
+			subhead.textContent = "[" + a[i].split("[")[1];
 			answer.append(subhead);
 		} else {
 			answer.textContent = a[i].toString().toUpperCase();
