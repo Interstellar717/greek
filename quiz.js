@@ -305,7 +305,13 @@ const randomGreek = () => {
 		}
 
 		answers = comprehension(4, () => arrayRandom(Object.values(dictToUse)), [Object.values(dictToUse)[rn]], true, true);
+
+		res.answers = answers;
+
+		res.correct = res.answers.indexOf(dictToUse[res.question]) + 1;
+
 	} else {
+
 		rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
 		res = {
 			question: Object.values(dictToUse)[rn],
@@ -313,13 +319,16 @@ const randomGreek = () => {
 		}
 
 		answers = comprehension(4, () => arrayRandom(Object.keys(dictToUse)), [Object.keys(dictToUse)[rn]], true, true);
+
+		res.answers = answers;
+
+		// res.answers = keys
+		res.correct = res.answers.indexOf(Object.keys(dictToUse)[rn]) + 1;
 	}
 
 
 
-	res.answers = answers;
 
-	res.correct = res.answers.indexOf(dictToUse[res.question]) + 1;
 
 	return res;
 }
