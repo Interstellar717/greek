@@ -146,5 +146,5 @@ div.quiz {
 h3.subanswer {
 	font-size: 0.45em;
 	position: absolute;
-	width: 100%;
+	width: calc(100% - 40px);
 }
