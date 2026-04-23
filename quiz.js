@@ -27,25 +27,43 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 	acon.classList.add("answer-container");
 
 
+	const noTono = {
+		"Ά": "Α",
+		"Έ": "Ε",
+		"Ί": "Ι",
+		"Ό": "Ο",
+		"Ύ": "Υ",
+		"Ώ": "Ω",
+		"Ή": "Η"
+	}
+
 	for (let i = 0; i < a.length; i++) {
 		const answer = crel("div");
 		answer.classList.add("answer");
 		answer.classList.add("transition-answer-btn");
 		answer.style.setProperty("--bkg", colors[i]);
 		if (a[i].toString().split("(").length > 1) {
-			answer.textContent = a[i].toString().split("(")[0].toUpperCase();
+
+			var temp = a[i].toString().split("(")[0].toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
 			subhead.textContent = "(" + a[i].split("(")[1];
 			answer.append(subhead);
+
 		} else if (a[i].toString().endsWith("]")) {
-			answer.textContent = a[i].toString().split("[")[0].toUpperCase();
+			var temp = a[i].toString().split("[")[0].toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
 			subhead.textContent = "[" + a[i].split("[")[1];
 			answer.append(subhead);
+
 		} else {
-			answer.textContent = a[i].toString().toUpperCase();
+			var temp = a[i].toString().toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
 		}
 		answer.setAttribute("qn", i + 1);
 
