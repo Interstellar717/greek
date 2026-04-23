@@ -47,6 +47,8 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 			var temp = a[i].toString().split("(")[0].toUpperCase();
 			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
 
+			answer.style.setProperty("--l", temp.length);
+
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
 			subhead.textContent = "(" + a[i].split("(")[1];
@@ -56,6 +58,8 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 			var temp = a[i].toString().split("[")[0].toUpperCase();
 			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
 
+			answer.style.setProperty("--l", temp.length);
+
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
 			subhead.textContent = "[" + a[i].split("[")[1];
@@ -64,6 +68,8 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 		} else {
 			var temp = a[i].toString().toUpperCase();
 			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
+			answer.style.setProperty("--l", temp.length);
 		}
 		answer.setAttribute("qn", i + 1);
 

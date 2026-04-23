@@ -68,12 +68,15 @@ div.answer {
 	/* width: 100%; */
 	align-content: center;
 	text-align: center;
-	font-size: 50px;
+	font-size: clamp(10px, calc(25vw / var(--l)), 40px);
 	cursor: pointer;
 	background-color: inherit;
-	height: 100%;
+	height: calc(100% - 40px);
 	flex: 1;
-	/* flex: 1; */
+	display: block;
+	text-wrap: wrap;
+	overflow-wrap: break-word;
+	padding: 20px;
 }
 
 /* div.answer:hover {
