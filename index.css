@@ -139,3 +139,8 @@ div.quiz {
 	height: 100%;
 	width: 100%;
 }
+
+h3.subanswer {
+	font-size: 0.45em;
+	position: absolute;
+}

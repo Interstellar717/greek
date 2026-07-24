@@ -32,7 +32,15 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 		answer.classList.add("answer");
 		answer.classList.add("transition-answer-btn");
 		answer.style.setProperty("--bkg", colors[i]);
-		answer.textContent = (a[i].toString() || alpha[i]).toUpperCase();
+		if (a[i].toString().split("(").length > 1) {
+			answer.textContent = a[i].toString().split("(")[0].toUpperCase();
+			var subhead = crel("h3");
+			subhead.classList.add("subanswer");
+			subhead.textContent = "(" + a[i].split("(")[1] + ")"
+			answer.append(subhead);
+		} else {
+			answer.textContent = a[i].toString().toUpperCase();
+		}
 		answer.setAttribute("qn", i + 1);
 
 		for (let j = 0; j < 4; j++) {
