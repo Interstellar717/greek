@@ -35,45 +35,45 @@
     height: 12.5%;
 }
 
-.transition-answer-btn .ani-piece:nth-child(1) {
+.transition-answer-btn .ani-piece:nth-of-type(1) {
     left: 0;
     top: 0;
 }
 
-.transition-answer-btn .ani-piece:nth-child(2) {
+.transition-answer-btn .ani-piece:nth-of-type(2) {
     right: 0;
     top: 0;
 }
 
 
-.transition-answer-btn .ani-piece:nth-child(3) {
+.transition-answer-btn .ani-piece:nth-of-type(3) {
     left: 0;
     bottom: 0;
 }
 
 
-.transition-answer-btn .ani-piece:nth-child(4) {
+.transition-answer-btn .ani-piece:nth-of-type(4) {
     right: 0;
     bottom: 0;
 }
 
-.transition-answer-btn .ani-piece2:nth-child(5) {
+.transition-answer-btn .ani-piece2:nth-of-type(5) {
     left: 0;
     top: 0;
 }
 
 
-.transition-answer-btn .ani-piece2:nth-child(6) {
+.transition-answer-btn .ani-piece2:nth-of-type(6) {
     right: 0;
     top: 0;
 }
 
-.transition-answer-btn .ani-piece2:nth-child(7) {
+.transition-answer-btn .ani-piece2:nth-of-type(7) {
     left: 0;
     bottom: 0;
 }
 
-.transition-answer-btn .ani-piece2:nth-child(8) {
+.transition-answer-btn .ani-piece2:nth-of-type(8) {
     right: 0;
     bottom: 0;
 }

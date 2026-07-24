@@ -27,19 +27,49 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 	acon.classList.add("answer-container");
 
 
+	const noTono = {
+		"Ά": "Α",
+		"Έ": "Ε",
+		"Ί": "Ι",
+		"Ό": "Ο",
+		"Ύ": "Υ",
+		"Ώ": "Ω",
+		"Ή": "Η"
+	}
+
 	for (let i = 0; i < a.length; i++) {
 		const answer = crel("div");
 		answer.classList.add("answer");
 		answer.classList.add("transition-answer-btn");
 		answer.style.setProperty("--bkg", colors[i]);
 		if (a[i].toString().split("(").length > 1) {
-			answer.textContent = a[i].toString().split("(")[0].toUpperCase();
+
+			var temp = a[i].toString().split("(")[0].toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
+			answer.style.setProperty("--l", temp.length);
+
 			var subhead = crel("h3");
 			subhead.classList.add("subanswer");
-			subhead.textContent = "(" + a[i].split("(")[1] + ")"
+			subhead.textContent = "(" + a[i].split("(")[1];
 			answer.append(subhead);
+
+		} else if (a[i].toString().endsWith("]")) {
+			var temp = a[i].toString().split("[")[0].toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
+			answer.style.setProperty("--l", temp.length);
+
+			var subhead = crel("h3");
+			subhead.classList.add("subanswer");
+			subhead.textContent = "[" + a[i].split("[")[1];
+			answer.append(subhead);
+
 		} else {
-			answer.textContent = a[i].toString().toUpperCase();
+			var temp = a[i].toString().toUpperCase();
+			answer.textContent = temp[0] + temp.substring(1).split("").map(e => noTono[e] || e).join("");
+
+			answer.style.setProperty("--l", temp.length);
 		}
 		answer.setAttribute("qn", i + 1);
 
@@ -109,7 +139,11 @@ const newQuestion = (q, a = [], correctN, time = 60, appendTo, fullList, func) =
 
 			if (!correct) {
 				const answerSpan = crel("span");
-				answerSpan.textContent = qsa(".answer")[correctN - 1].textContent;
+				try {
+					answerSpan.textContent = qsa(".answer")[correctN - 1].textContent;
+				} catch (e) {
+					console.log(`correctN: ${correctN}\nq:${q}\na:${a}`);
+				}
 				answerText.append(answerSpan);
 			} else updateScoreAndTurn(1);
 
@@ -283,18 +317,42 @@ const randomGreek = () => {
 
 	// alert(JSON.stringify(dictToUse))
 
-	var rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
-	var res = {
-		question: Object.keys(dictToUse)[rn],
-		time: 60
+	var rn
+	var res;
+	var answers;
+
+	if (Math.floor(Math.random() * 2)) {
+		rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
+		res = {
+			question: Object.keys(dictToUse)[rn],
+			time: 60
+		}
+
+		answers = comprehension(4, () => arrayRandom(Object.values(dictToUse)), [Object.values(dictToUse)[rn]], true, true);
+
+		res.answers = answers;
+
+		res.correct = res.answers.indexOf(dictToUse[res.question]) + 1;
+
+	} else {
+
+		rn = Math.floor(Math.random() * Object.entries(dictToUse).length);
+		res = {
+			question: Object.values(dictToUse)[rn],
+			time: 60
+		}
+
+		answers = comprehension(4, () => arrayRandom(Object.keys(dictToUse)), [Object.keys(dictToUse)[rn]], true, true);
+
+		res.answers = answers;
+
+		// res.answers = keys
+		res.correct = res.answers.indexOf(Object.keys(dictToUse)[rn]) + 1;
 	}
 
-	var answers = comprehension(4, () => arrayRandom(Object.values(dictToUse)), [Object.values(dictToUse)[rn]], true, true);
 
 
-	res.answers = answers;
 
-	res.correct = res.answers.indexOf(dictToUse[res.question]) + 1;
 
 	return res;
 }
