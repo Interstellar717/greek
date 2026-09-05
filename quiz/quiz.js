@@ -295,7 +295,7 @@ function stringToDictionary(string) {
 async function getDictionaries(arr, callback) {
 	var res = {};
 	for (let i of arr) {
-		var f = fetch(`${window.location.pathname.split("/greek/")[0]}/greek/json/${i.toLowerCase()}.json`);
+		var f = fetch(`${window.location.pathname.split("/greek/quiz/")[0]}/greek/quiz/json/${i.toLowerCase()}.json`);
 		var j = (await f).json();
 		res[i] = await j;
 	}
