@@ -1,0 +1,154 @@
+* {
+    transition: 0.3s all;
+    --coral-1: hsl(0, 79%, 70%);
+    --coral-2: hsl(0, 79%, 75%);
+    --coral-3: hsl(0, 79%, 80%);
+    --coral-4: hsl(0, 79%, 85%);
+    --green-1: hsl(100, 79%, 70%);
+    --green-2: hsl(100, 79%, 75%);
+    --green-3: hsl(100, 79%, 80%);
+    --green-4: hsl(100, 79%, 85%);
+    --blue-1: hsl(200, 79%, 70%);
+    --blue-2: hsl(200, 79%, 75%);
+    --blue-3: hsl(200, 79%, 80%);
+    --blue-4: hsl(200, 79%, 85%);
+    --gray-1: hsl(0, 0%, 60%);
+    --gray-2: hsl(0, 0%, 70%);
+    --gray-3: hsl(0, 0%, 80%);
+    --gray-4: hsl(0, 0%, 90%);
+}
+
+@font-face {
+    font-family: 'Futura Light';
+    src: url("fonts/FuturaLight.woff2");
+}
+
+@font-face {
+    font-family: 'Futura';
+    src: url("fonts/FuturaRegular.woff2");
+}
+
+@font-face {
+    font-family: 'Futura Bold';
+    src: url("fonts/FuturaBold.woff2");
+}
+
+@font-face {
+    font-family: 'Postea';
+    src: url("Postea-Regular.woff2");
+}
+
+@font-face {
+    font-family: 'Postea Bold';
+    src: url("fonts/Postea-Bold.woff2");
+}
+
+@font-face {
+    font-family: 'Postea X';
+    src: url("fonts/Postea-ExtraBold.woff2");
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: var(--gray-4);
+}
+
+.word-card {
+    width: 60vw;
+    height: 80vh;
+    background: white;
+    box-shadow: 4px 4px 30px var(--gray-2);
+    border-radius: 1%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 30px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.word-card .word {
+    margin-top: 20px;
+    font-size: 40px;
+    font-family: 'Postea Bold';
+    color: var(--coral-1);
+}
+
+.word-card .meaning-header {
+    font-family: 'Futura';
+    font-weight: 100;
+    /* font-style: italic; */
+}
+
+.main-card {
+    min-width: fit-content;
+    width: calc(100% - 20px);
+    /* prev 60% */
+    box-sizing: border-box;
+}
+
+.content-card {
+    box-sizing: border-box;
+    padding: 20px 30px;
+    margin: 10px 10px;
+    /* box-shadow: 15px 15px 9px -8px var(--coral-3); */
+    box-shadow: 5px 5px 9px 1px var(--coral-3);
+    /* box-shadow: 4px 4px 9px 5px var(--coral-3); */
+}
+
+hr {
+    border: solid 0.1px var(--coral-3);
+}
+
+.main-card h1,
+.main-card h3 {
+    margin: 5px 0;
+    width: fit-content;
+}
+
+.def-card {
+    font-family: 'Postea';
+    width: calc(100% - 20px);
+    /* prev 60% */
+    box-sizing: border-box;
+    flex: 1;
+    font-size: 14px;
+    /* white-space: pre-line; respect \n */
+    white-space: pre-wrap;
+}
+
+.alt-uses {
+    width: 100%;
+}
+
+.alt-uses-head {
+    margin: 5px 0;
+    font-family: 'Futura';
+    color: var(--coral-1);
+}
+
+.alt-uses span {
+    display: inline-block;
+    width: 50%;
+    line-height: 1.85;
+    /* font-family: "Futura"; */
+}
+
+.alt-uses span.usage {
+    font-style: italic;
+}
+
+.alt-uses span.meaning {
+    text-align: right;
+    color: var(--coral-1);
+}
